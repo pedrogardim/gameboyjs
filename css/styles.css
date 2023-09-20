@@ -10,20 +10,27 @@ body {
   align-items: center;
   background: radial-gradient(#444, #000);
   font-family: "Silkscreen", cursive;
+  perspective: 100vh;
+  overflow: hidden;
   /* font-family: "Press Start 2P", cursive; */
 }
 
+/* GAMEBOY LAYOUT */
+
 #gameboy-body {
+  position: relative;
   height: 70%;
   background: linear-gradient(45deg, #b7b7ab, #ffe);
   aspect-ratio: 3 / 5;
-  border-radius: 1.6vh;
-  border-bottom-right-radius: 6vh;
+  /* border-radius: 1.6vh;
+  border-bottom-right-radius: 6vh; */
   display: grid;
   grid-template-columns: 1fr 2fr 5fr 5fr 5fr 2fr 1fr;
   grid-template-rows: 1fr 1fr 7fr 1fr 1fr 1fr 4fr 2fr 2fr;
   color: #57668f;
   user-select: none;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
 }
 
 #gameboy-screen-wrapper {
@@ -157,12 +164,7 @@ body {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  transform: rotate(-35deg);
-  /* border: solid 1px red; */
-}
-
-#gameboy-vents-wrapper2 {
-  grid-area: 8 / 5 / 10 / 9;
+  /* transform: rotate(-35deg); */
 }
 
 #gameboy-vents-wrapper > div {
@@ -171,11 +173,60 @@ body {
   border-radius: 1vh;
   box-shadow: inset 0 0 10px #00000048;
   margin-right: 1.2vh;
-  margin-bottom: -1vh;
+  margin-bottom: -5vh;
 }
 
+/* GAMEBOY 3D */
+
+.gameboy-wall {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #b7b7ab;
+}
+
+#gameboy-wall-top {
+  transform: rotateX(90deg) translateZ(35vh) scaleY(0.2) translateY(-50%);
+}
+
+#gameboy-wall-left {
+  transform: rotateY(-90deg) translateZ(calc(35vh * 3 / 5)) scaleX(0.34)
+    translateX(-50%);
+}
+#gameboy-wall-right {
+  transform: rotateY(90deg) translateZ(calc(35vh * 3 / 5)) scaleX(0.34)
+    translateX(50%);
+}
+
+#gameboy-wall-bottom {
+  transform: rotateX(-90deg) translateZ(35vh) scaleY(0.2) translateY(50%);
+}
+
+#gameboy-wall-behind {
+  transform: translateX(200px);
+}
+
+.rotated-top {
+  transform: rotateX(10deg);
+}
+
+.rotated-down {
+  transform: rotateX(-10deg);
+}
+
+.rotated-left {
+  transform: rotateY(-10deg);
+}
+
+.rotated-right {
+  transform: rotateY(10deg);
+}
 /* UTILITY */
 
 .shadow {
   box-shadow: 0 0 10px #0007;
+}
+
+.pressed {
+  filter: brightness(0.5);
 }
