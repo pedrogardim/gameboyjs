@@ -30,7 +30,7 @@ body {
   color: #57668f;
   user-select: none;
   transform-style: preserve-3d;
-  transition: transform 1s;
+  transition: transform 0.5s;
 }
 
 #gameboy-screen-wrapper {
@@ -205,8 +205,28 @@ body {
 #gameboy-wall-behind {
   transform: translateX(200px);
 }
+
+.rotated-top {
+  transform: rotateX(10deg);
+}
+
+.rotated-down {
+  transform: rotateX(-10deg);
+}
+
+.rotated-left {
+  transform: rotateY(-10deg);
+}
+
+.rotated-right {
+  transform: rotateY(10deg);
+}
 /* UTILITY */
 
 .shadow {
   box-shadow: 0 0 10px #0007;
+}
+
+.pressed {
+  filter: brightness(0.5);
 }
