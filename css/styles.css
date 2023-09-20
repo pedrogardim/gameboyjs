@@ -15,7 +15,7 @@ body {
   height: 70%;
   background: linear-gradient(45deg, #cbcbbe, #ffe);
   aspect-ratio: 3 / 5;
-  border-radius: 1em;
+  border-radius: 1.6vh;
   display: grid;
   grid-template-columns: 1fr 2fr 15fr 2fr 1fr;
   grid-template-rows: 1fr 1fr 7fr 1fr 1fr 1fr 4fr 1fr 3fr;
@@ -23,8 +23,8 @@ body {
 
 #gameboy-screen-wrapper {
   background-color: #959595;
-  border-radius: 1em;
-  border-bottom-right-radius: 3em;
+  border-radius: 1.6vh;
+  border-bottom-right-radius: 6vh;
   grid-area: 2 / 2 / 5 / 5;
 }
 
@@ -44,7 +44,7 @@ body {
   /* font-family: "Silkscreen", cursive; */
   font-family: "Press Start 2P", cursive;
   color: #57668f;
-  font-size: 1.3em;
+  font-size: 1.6vh;
 }
 
 #gameboy-controls {
@@ -92,4 +92,10 @@ body {
   grid-area: 2 / 2 / 2 / 2;
   border-radius: 50%;
   background: radial-gradient(#666, #444);
+}
+
+/* UTILITY */
+
+.shadow {
+  box-shadow: 0 0 10px #0007;
 }
