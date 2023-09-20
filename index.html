@@ -4,11 +4,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Gameboy</title>
+    <link href="./css/styles.css" rel="stylesheet" />
 </head>
 
 <body>
+    <div id="gameboy-body">
+        <div id="gameboy-screen-wrapper"></div>
+        <div id="gameboy-screen"></div>
+        <div id="gameboy-logo">
+            <span>Pedro Gardim</span>
+        </div>
+        <div id="gameboy-controls">
+            <div id="gameboy-d-pads-wrapper">
+                <div id="gameboy-d-pad-top" class="shadow"></div>
+                <div id="gameboy-d-pad-left" class="shadow"></div>
+                <div id="gameboy-d-pad-right" class="shadow"></div>
+                <div id="gameboy-d-pad-bottom" class="shadow"></div>
+                <div id="gameboy-d-pad-center"></div>
+                <div id="gameboy-d-pad-hole"></div>
+            </div>
+            <div id="gameboy-buttons-wrapper">
+                <div id="gameboy-buttons-a" class="gameboy-button shadow">
+                    <span>B</span>
+                </div>
+                <div id="gameboy-buttons-b" class="gameboy-button shadow">
+                    <span>A</span>
+                </div>
+            </div>
 
+        </div>
+        <div id="gameboy-secondary-buttons-wrapper">
+            <div id="gameboy-select-button" class="gameboy-secondary-button shadow">
+                <span>Select</span>
+            </div>
+            <div id="gameboy-start-button" class="gameboy-secondary-button shadow">
+                <span>Start</span>
+            </div>
+        </div>
+        <div id="gameboy-vents-wrapper">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <div id="gameboy-vents-wrapper2">
+        </div>
+    </div>
+    <script src="./js/main.js"></script>
 </body>
 
 </html>
