@@ -13,12 +13,12 @@ body {
 
 #gameboy-body {
   height: 70%;
-  background-color: #ffe;
+  background: linear-gradient(45deg, #cbcbbe, #ffe);
   aspect-ratio: 3 / 5;
   border-radius: 1em;
   display: grid;
   grid-template-columns: 1fr 2fr 15fr 2fr 1fr;
-  grid-template-rows: 1fr 1fr 7fr 1fr 1fr 2fr 3fr 1fr 3fr;
+  grid-template-rows: 1fr 1fr 7fr 1fr 1fr 1fr 4fr 1fr 3fr;
 }
 
 #gameboy-screen-wrapper {
@@ -45,4 +45,51 @@ body {
   font-family: "Press Start 2P", cursive;
   color: #57668f;
   font-size: 1.3em;
+}
+
+#gameboy-controls {
+  grid-area: 7 / 2 / 8 / 5;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1.2fr;
+}
+
+#gameboy-d-pads-wrapper {
+  grid-area: 1 / 1 / 1 / 1;
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+}
+
+#gameboy-d-pad-top {
+  grid-area: 1 / 2 / 1 / 2;
+  background: linear-gradient(45deg, #444, #444, #aaa);
+  border-radius: 0.5em 0.5em 0 0;
+}
+
+#gameboy-d-pad-left {
+  grid-area: 2 / 1 / 2 / 1;
+  background: #444;
+  border-radius: 0.5em 0 0 0.5em;
+}
+
+#gameboy-d-pad-bottom {
+  grid-area: 3 / 2 / 3 / 2;
+  background: #444;
+  border-radius: 0 0 0.5em 0.5em;
+}
+
+#gameboy-d-pad-right {
+  grid-area: 2 / 3 / 2 / 3;
+  background: linear-gradient(45deg, #444, #444, #aaa);
+  border-radius: 0 0.5em 0.5em 0;
+}
+
+#gameboy-d-pad-center {
+  grid-area: 2 / 2 / 2 / 2;
+  background: #444;
+}
+
+#gameboy-d-pad-hole {
+  grid-area: 2 / 2 / 2 / 2;
+  border-radius: 50%;
+  background: radial-gradient(#666, #444);
 }
