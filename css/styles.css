@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Silkscreen&display=swap");
+
 body {
   height: 100vh;
   width: 100vw;
@@ -16,7 +18,7 @@ body {
   border-radius: 1em;
   display: grid;
   grid-template-columns: 1fr 2fr 15fr 2fr 1fr;
-  grid-template-rows: 1fr 1fr 6fr 1fr 2fr 1fr 3fr 1fr 3fr;
+  grid-template-rows: 1fr 1fr 7fr 1fr 1fr 2fr 3fr 1fr 3fr;
 }
 
 #gameboy-screen-wrapper {
@@ -30,4 +32,17 @@ body {
   background-color: #768d23;
   grid-area: 3 / 3 / 4 / 4;
   box-shadow: inset 0 0 10px #2a2a2a5b;
+}
+
+#gameboy-logo {
+  grid-area: 5 / 2 / 6 / 5;
+  display: flex;
+  align-items: end;
+}
+
+#gameboy-logo > span {
+  /* font-family: "Silkscreen", cursive; */
+  font-family: "Press Start 2P", cursive;
+  color: #57668f;
+  font-size: 1.3em;
 }
