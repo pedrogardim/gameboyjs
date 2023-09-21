@@ -32,7 +32,7 @@ class SnakeGameController {
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.snakeTiles.forEach((tile) => {
-      this.ctx.fillStyle = "#FF0000";
+      this.ctx.fillStyle = "#350";
       this.ctx.fillRect(
         this.getTileSize()[0] * tile[0],
         this.getTileSize()[1] * tile[1],
