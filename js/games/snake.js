@@ -4,9 +4,12 @@ class SnakeGameController {
   }
   init() {
     this.initCanvas();
-    this.gameSize = [32, 20];
+    this.gameSize = [25, 16];
     this.snakeVector = [1, 0];
-    this.snakeTiles = [[16, 10]];
+    this.snakeTiles = [
+      [12, 8],
+      [11, 8],
+    ];
     setInterval(() => this.update(), 1000 / 2);
     document.addEventListener("keydown", this.onKeyPress);
   }
@@ -14,8 +17,12 @@ class SnakeGameController {
     let lastTile = this.snakeTiles[this.snakeTiles.length - 1];
     let newTile = lastTile.map((d, i) => d + this.snakeVector[i]);
     this.snakeTiles.push(newTile);
-    let a = this.snakeTiles.shift();
-    console.log(a);
+    this.snakeTiles.shift();
+    if (this.detectColition())
+      this.snakeTiles = [
+        [12, 8],
+        [11, 8],
+      ];
     this.draw();
   }
   initCanvas() {
@@ -27,12 +34,26 @@ class SnakeGameController {
     this.snakeTiles.forEach((tile) => {
       this.ctx.fillStyle = "#FF0000";
       this.ctx.fillRect(
-        (this.getTileSize()[0] + 2) * tile[0],
-        (this.getTileSize()[1] + 2) * tile[1],
-        this.getTileSize()[0],
-        this.getTileSize()[1]
+        this.getTileSize()[0] * tile[0],
+        this.getTileSize()[1] * tile[1],
+        this.getTileSize()[0] - 2,
+        this.getTileSize()[1] - 2
       );
     });
+
+    //GRID
+    // for (let x = 0; x < this.gameSize[0]; x++) {
+    //   for (let y = 0; y < this.gameSize[1]; y++) {
+    //     this.ctx.strokeStyle = "#999";
+    //     this.ctx.lineWidth = 0.5;
+    //     this.ctx.strokeRect(
+    //       this.getTileSize()[0] * x,
+    //       this.getTileSize()[1] * y,
+    //       this.getTileSize()[0],
+    //       this.getTileSize()[1]
+    //     );
+    //   }
+    // }
   }
   // utils
   getRandomPosition() {
@@ -43,6 +64,26 @@ class SnakeGameController {
       this.canvas.width / this.gameSize[0],
       this.canvas.height / this.gameSize[1],
     ];
+  }
+  detectColition() {
+    let hasCollided = false;
+    const head = this.snakeTiles[this.snakeTiles.length - 1];
+    this.snakeTiles.forEach((tile, index) => {
+      if (
+        index !== this.snakeTiles.length - 1 &&
+        JSON.stringify(tile) === JSON.stringify(head)
+      )
+        hasCollided = true;
+    });
+    if (
+      head[0] >= this.gameSize[0] ||
+      head[1] >= this.gameSize[1] ||
+      head[0] < 0 ||
+      head[1] < 0
+    ) {
+      hasCollided = true;
+    }
+    return hasCollided;
   }
 }
 
