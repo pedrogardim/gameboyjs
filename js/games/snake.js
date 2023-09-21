@@ -98,8 +98,8 @@ export class SnakeGameController {
       this.ctx.fillRect(
         tileSize[0] * tile[0] + this.snakeTileMargin / 2,
         tileSize[1] * tile[1] - this.snakeTileMargin / 2,
-        tileSize[0] - this.snakeTileMargin,
-        tileSize[1] - this.snakeTileMargin
+        tileSize[0] - this.snakeTileMargin + 1,
+        tileSize[1] - this.snakeTileMargin + 1
       );
     });
 
