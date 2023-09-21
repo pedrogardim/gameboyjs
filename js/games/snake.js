@@ -38,7 +38,11 @@ export class SnakeGameController {
     this.started = false;
   }
   createApple() {
-    this.applePosition = this.getRandomPosition();
+    let newPos = this.getRandomPosition();
+    while (this.snakeTiles.find((tile) => arraysEqual(newPos, tile))) {
+      newPos = this.getRandomPosition();
+    }
+    this.applePosition = newPos;
   }
   update() {
     let lastTile = this.snakeTiles[this.snakeTiles.length - 1];
