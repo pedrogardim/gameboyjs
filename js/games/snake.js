@@ -4,6 +4,7 @@ export class SnakeGameController {
   gameSize = [25, 16];
   snakeTiles = [];
   snakeVector = [1, 0];
+  applePosition;
   started = false;
   gameInterval;
   canvas;
@@ -18,11 +19,13 @@ export class SnakeGameController {
     document.addEventListener("keydown", this.onKeyPress.bind(this));
   }
   startGame() {
+    clearInterval(this.gameInterval);
     this.started = true;
     this.snakeTiles = Array(3)
       .fill([0, Math.floor(this.gameSize[1] / 2)])
       .map((pos) => [Math.floor(this.gameSize[0] / 2), pos[1]]);
     this.snakeVector = [1, 0];
+    this.createApple();
     this.gameInterval = setInterval(() => this.update(), 1000 / 2);
   }
   onDeath() {
@@ -30,6 +33,9 @@ export class SnakeGameController {
     this.snakeTiles = [];
     this.snakeVector = [1, 0];
     this.started = false;
+  }
+  createApple() {
+    this.applePosition = this.getRandomPosition();
   }
   update() {
     let lastTile = this.snakeTiles[this.snakeTiles.length - 1];
@@ -46,6 +52,7 @@ export class SnakeGameController {
     this.ctx.font = "16px Silkscreen";
   }
   draw() {
+    let tileSize = this.getTileSize();
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     if (!this.started) {
       this.ctx.textAlign = "center";
@@ -59,12 +66,25 @@ export class SnakeGameController {
 
     this.snakeTiles.forEach((tile) => {
       this.ctx.fillRect(
-        this.getTileSize()[0] * tile[0],
-        this.getTileSize()[1] * tile[1],
-        this.getTileSize()[0] - 2,
-        this.getTileSize()[1] - 2
+        tileSize[0] * tile[0],
+        tileSize[1] * tile[1],
+        tileSize[0] - 2,
+        tileSize[1] - 2
       );
     });
+
+    if (this.applePosition) {
+      let appleRadius = tileSize[1] / 3;
+      this.ctx.beginPath();
+      this.ctx.arc(
+        tileSize[0] * this.applePosition[0] + tileSize[0] / 2,
+        tileSize[1] * this.applePosition[1] + tileSize[1] / 2,
+        appleRadius,
+        0,
+        2 * Math.PI
+      );
+      this.ctx.fill();
+    }
   }
   onKeyPress(event) {
     switch (event.key) {
