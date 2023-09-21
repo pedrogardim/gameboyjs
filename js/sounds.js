@@ -1,10 +1,11 @@
 const playerOptions = {
+  baseUrl: "./assets/sounds/",
   urls: {
-    coin: "../../assets/sounds/coin.wav",
-    start: "../../assets/sounds/start.wav",
-    cursor: "../../assets/sounds/cursor.wav",
-    death: "../../assets/sounds/death.wav",
-    music: "../../assets/sounds/music.mp3",
+    coin: "coin.wav",
+    start: "start.wav",
+    cursor: "cursor.wav",
+    death: "death.wav",
+    music: "music.mp3",
   },
 };
 
