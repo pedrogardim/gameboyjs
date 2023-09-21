@@ -1,4 +1,6 @@
-class SnakeGameController {
+import { arraysEqual } from "../utils.js";
+
+export class SnakeGameController {
   gameSize = [25, 16];
   snakeTiles = [];
   snakeVector = [1, 0];
@@ -116,7 +118,3 @@ class SnakeGameController {
     return hasCollided;
   }
 }
-
-window.onload = () => {
-  const snakeGame = new SnakeGameController();
-};
