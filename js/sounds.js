@@ -1,5 +1,5 @@
 const playerOptions = {
-  baseUrl: "../assets/sounds/",
+  baseUrl: "./assets/sounds/",
   urls: {
     coin: "coin.wav",
     start: "start.wav",
