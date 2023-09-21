@@ -29,6 +29,7 @@ export class SnakeGameController {
       .fill([0, Math.floor(this.gameSize[1] / 2)])
       .map((pos) => [Math.floor(this.gameSize[0] / 2), pos[1]]);
     this.snakeVector = [1, 0];
+    this.points = 0;
     this.createApple();
     this.gameInterval = setInterval(() => this.update(), this.initialSpeed);
   }
