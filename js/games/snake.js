@@ -4,9 +4,11 @@ export class SnakeGameController {
   gameSize = [15, 12];
   snakeTiles = [];
   snakeVector = [1, 0];
-  points = 0;
   started = false;
+  points = 0;
   applePosition;
+  speedFactor = 20; //doubles the speed  for each 20 points
+  initialSpeed = 500; // cycle for each 500ms
   snakeTileMargin = 3;
   gameInterval;
   canvas;
@@ -28,7 +30,7 @@ export class SnakeGameController {
       .map((pos) => [Math.floor(this.gameSize[0] / 2), pos[1]]);
     this.snakeVector = [1, 0];
     this.createApple();
-    this.gameInterval = setInterval(() => this.update(), 1000 / 2);
+    this.gameInterval = setInterval(() => this.update(), this.initialSpeed);
   }
   onDeath() {
     clearInterval(this.gameInterval);
@@ -44,13 +46,21 @@ export class SnakeGameController {
     }
     this.applePosition = newPos;
   }
+  onAppleEaten() {
+    this.points++;
+    this.createApple();
+    clearInterval(this.gameInterval);
+    let newSpeed =
+      this.initialSpeed / (1 + 1 * ((this.points + 1) / this.speedFactor));
+    console.log(newSpeed);
+    this.gameInterval = setInterval(() => this.update(), newSpeed);
+  }
   update() {
     let lastTile = this.snakeTiles[this.snakeTiles.length - 1];
     let newTile = lastTile.map((d, i) => d + this.snakeVector[i]);
     this.snakeTiles.push(newTile);
     if (arraysEqual(newTile, this.applePosition)) {
-      this.points++;
-      this.createApple();
+      this.onAppleEaten();
     } else {
       this.snakeTiles.shift();
     }
