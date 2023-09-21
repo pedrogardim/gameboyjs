@@ -1,5 +1,7 @@
 const playerOptions = {
-  baseUrl: "../../assets/sounds/",
+  //TEMP solution: add gh-pages hosted files, local is not working on deployed
+  // baseUrl: "../assets/sounds/",
+  baseUrl: "https://pedrogardim.github.io/jsboy/assets/sounds/",
   urls: {
     coin: "coin.wav",
     start: "start.wav",
