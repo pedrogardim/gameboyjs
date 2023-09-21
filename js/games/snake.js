@@ -1,3 +1,4 @@
+import { sounds } from "../sounds.js";
 import { arraysEqual } from "../utils.js";
 
 export class SnakeGameController {
@@ -32,6 +33,8 @@ export class SnakeGameController {
     this.points = 0;
     this.createApple();
     this.gameInterval = setInterval(() => this.update(), this.initialSpeed);
+    sounds.player("start").start();
+    sounds.player("music").start();
   }
   onDeath() {
     clearInterval(this.gameInterval);
@@ -39,6 +42,8 @@ export class SnakeGameController {
     this.snakeVector = [1, 0];
     this.points = 0;
     this.started = false;
+    sounds.player("music").stop();
+    sounds.player("death").start();
   }
   createApple() {
     let newPos = this.getRandomPosition();
@@ -54,6 +59,7 @@ export class SnakeGameController {
     let newSpeed =
       this.initialSpeed / (1 + 1 * ((this.points + 1) / this.speedFactor));
     this.gameInterval = setInterval(() => this.update(), newSpeed);
+    sounds.player("coin").start();
   }
   update() {
     let lastTile = this.snakeTiles[this.snakeTiles.length - 1];

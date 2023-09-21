@@ -1,3 +1,5 @@
+import { sounds } from "./sounds.js";
+
 const hightlightKey = (key, event) => {
   const keyElementId = {
     ArrowUp: "#gameboy-d-pad-top",
@@ -24,15 +26,19 @@ document.addEventListener("keydown", (event) => {
 
   switch (event.key) {
     case "ArrowUp":
+      sounds.player("cursor").start();
       gameboyBody.classList.add("rotated-top");
       break;
     case "ArrowDown":
+      sounds.player("cursor").start();
       gameboyBody.classList.add("rotated-down");
       break;
     case "ArrowLeft":
+      sounds.player("cursor").start();
       gameboyBody.classList.add("rotated-left");
       break;
     case "ArrowRight":
+      sounds.player("cursor").start();
       gameboyBody.classList.add("rotated-right");
       break;
     default:
