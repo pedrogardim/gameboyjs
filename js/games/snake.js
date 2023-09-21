@@ -1,11 +1,13 @@
 import { arraysEqual } from "../utils.js";
 
 export class SnakeGameController {
-  gameSize = [25, 16];
+  gameSize = [15, 12];
   snakeTiles = [];
   snakeVector = [1, 0];
-  applePosition;
+  points = 0;
   started = false;
+  applePosition;
+  snakeTileMargin = 2;
   gameInterval;
   canvas;
   ctx;
@@ -32,6 +34,7 @@ export class SnakeGameController {
     clearInterval(this.gameInterval);
     this.snakeTiles = [];
     this.snakeVector = [1, 0];
+    this.points = 0;
     this.started = false;
   }
   createApple() {
@@ -41,15 +44,22 @@ export class SnakeGameController {
     let lastTile = this.snakeTiles[this.snakeTiles.length - 1];
     let newTile = lastTile.map((d, i) => d + this.snakeVector[i]);
     this.snakeTiles.push(newTile);
-    this.snakeTiles.shift();
+    if (arraysEqual(newTile, this.applePosition)) {
+      this.points++;
+      this.createApple();
+    } else {
+      this.snakeTiles.shift();
+    }
     if (this.detectColition()) this.onDeath();
     this.draw();
   }
   initCanvas() {
     this.canvas = document.getElementById("game");
+    this.canvas.width = 250;
+    this.canvas.height = this.canvas.width * 0.8;
     this.ctx = this.canvas.getContext("2d");
     this.ctx.fillStyle = "#350";
-    this.ctx.font = "16px Silkscreen";
+    this.ctx.font = `${this.canvas.height / 15}px Silkscreen`;
   }
   draw() {
     let tileSize = this.getTileSize();
@@ -66,15 +76,15 @@ export class SnakeGameController {
 
     this.snakeTiles.forEach((tile) => {
       this.ctx.fillRect(
-        tileSize[0] * tile[0],
-        tileSize[1] * tile[1],
-        tileSize[0] - 2,
-        tileSize[1] - 2
+        tileSize[0] * tile[0] + this.snakeTileMargin / 2,
+        tileSize[1] * tile[1] - this.snakeTileMargin / 2,
+        tileSize[0] - this.snakeTileMargin,
+        tileSize[1] - this.snakeTileMargin
       );
     });
 
     if (this.applePosition) {
-      let appleRadius = tileSize[1] / 3;
+      let appleRadius = tileSize[1] / 5;
       this.ctx.beginPath();
       this.ctx.arc(
         tileSize[0] * this.applePosition[0] + tileSize[0] / 2,
