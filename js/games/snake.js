@@ -7,7 +7,7 @@ export class SnakeGameController {
   points = 0;
   started = false;
   applePosition;
-  snakeTileMargin = 2;
+  snakeTileMargin = 3;
   gameInterval;
   canvas;
   ctx;
@@ -83,18 +83,19 @@ export class SnakeGameController {
       );
     });
 
-    if (this.applePosition) {
-      let appleRadius = tileSize[1] / 5;
-      this.ctx.beginPath();
-      this.ctx.arc(
-        tileSize[0] * this.applePosition[0] + tileSize[0] / 2,
-        tileSize[1] * this.applePosition[1] + tileSize[1] / 2,
-        appleRadius,
-        0,
-        2 * Math.PI
-      );
-      this.ctx.fill();
-    }
+    let appleRadius = tileSize[1] / 5;
+    this.ctx.beginPath();
+    this.ctx.arc(
+      tileSize[0] * this.applePosition[0] + tileSize[0] / 2,
+      tileSize[1] * this.applePosition[1] + tileSize[1] / 2 - appleRadius / 2,
+      appleRadius,
+      0,
+      2 * Math.PI
+    );
+    this.ctx.fill();
+
+    this.ctx.textAlign = "left";
+    this.ctx.fillText(`Score: ${this.points}`, 4, this.canvas.height / 15);
   }
   onKeyPress(event) {
     switch (event.key) {
