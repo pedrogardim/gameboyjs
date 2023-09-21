@@ -1,28 +1,31 @@
 class SnakeGameController {
+  gameSize = [25, 16];
+  snakeTiles = [];
+  snakeVector = [1, 0];
+  canvas;
+  ctx;
+
   constructor() {
     this.init();
   }
   init() {
     this.initCanvas();
-    this.gameSize = [25, 16];
-    this.snakeVector = [1, 0];
-    this.snakeTiles = [
-      [12, 8],
-      [11, 8],
-    ];
+    this.resetGameState();
     setInterval(() => this.update(), 1000 / 2);
     document.addEventListener("keydown", this.onKeyPress.bind(this));
+  }
+  resetGameState() {
+    this.snakeTiles = Array(3)
+      .fill([0, Math.floor(this.gameSize[1] / 2)])
+      .map((pos) => [Math.floor(this.gameSize[0] / 2), pos[1]]);
+    this.snakeVector = [1, 0];
   }
   update() {
     let lastTile = this.snakeTiles[this.snakeTiles.length - 1];
     let newTile = lastTile.map((d, i) => d + this.snakeVector[i]);
     this.snakeTiles.push(newTile);
     this.snakeTiles.shift();
-    if (this.detectColition())
-      this.snakeTiles = [
-        [12, 8],
-        [11, 8],
-      ];
+    if (this.detectColition()) this.resetGameState();
     this.draw();
   }
   initCanvas() {
@@ -91,9 +94,4 @@ class SnakeGameController {
   }
 }
 
-const dinoGame = new SnakeGameController();
-
-// let num = parseFloat(prompt("Insertar número"));
-// for (let i = 1; i <= 10; i++) {
-//   console.log(`${num} x ${i} = ${num * i}`);
-// }
+const snakeGame = new SnakeGameController();
