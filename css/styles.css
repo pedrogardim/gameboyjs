@@ -221,6 +221,13 @@ body {
 .rotated-right {
   transform: rotateY(10deg);
 }
+
+/* GAME */
+
+#game {
+  height: 100%;
+  width: 100%;
+}
 /* UTILITY */
 
 .shadow {
