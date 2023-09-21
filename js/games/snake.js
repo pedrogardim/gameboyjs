@@ -2,6 +2,8 @@ class SnakeGameController {
   gameSize = [25, 16];
   snakeTiles = [];
   snakeVector = [1, 0];
+  started = false;
+  gameInterval;
   canvas;
   ctx;
 
@@ -10,32 +12,50 @@ class SnakeGameController {
   }
   init() {
     this.initCanvas();
-    this.resetGameState();
-    setInterval(() => this.update(), 1000 / 2);
+    this.draw();
     document.addEventListener("keydown", this.onKeyPress.bind(this));
   }
-  resetGameState() {
+  startGame() {
+    this.started = true;
     this.snakeTiles = Array(3)
       .fill([0, Math.floor(this.gameSize[1] / 2)])
       .map((pos) => [Math.floor(this.gameSize[0] / 2), pos[1]]);
     this.snakeVector = [1, 0];
+    this.gameInterval = setInterval(() => this.update(), 1000 / 2);
+  }
+  onDeath() {
+    clearInterval(this.gameInterval);
+    this.snakeTiles = [];
+    this.snakeVector = [1, 0];
+    this.started = false;
   }
   update() {
     let lastTile = this.snakeTiles[this.snakeTiles.length - 1];
     let newTile = lastTile.map((d, i) => d + this.snakeVector[i]);
     this.snakeTiles.push(newTile);
     this.snakeTiles.shift();
-    if (this.detectColition()) this.resetGameState();
+    if (this.detectColition()) this.onDeath();
     this.draw();
   }
   initCanvas() {
     this.canvas = document.getElementById("game");
     this.ctx = this.canvas.getContext("2d");
+    this.ctx.fillStyle = "#350";
+    this.ctx.font = "16px Silkscreen";
   }
   draw() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    if (!this.started) {
+      this.ctx.textAlign = "center";
+      this.ctx.fillText(
+        "Press enter to start",
+        this.canvas.width / 2,
+        this.canvas.height / 2
+      );
+      return;
+    }
+
     this.snakeTiles.forEach((tile) => {
-      this.ctx.fillStyle = "#350";
       this.ctx.fillRect(
         this.getTileSize()[0] * tile[0],
         this.getTileSize()[1] * tile[1],
@@ -57,6 +77,9 @@ class SnakeGameController {
         break;
       case "ArrowRight":
         this.snakeVector = [1, 0];
+        break;
+      case "Enter":
+        this.startGame();
         break;
       default:
         break;
@@ -94,4 +117,6 @@ class SnakeGameController {
   }
 }
 
-const snakeGame = new SnakeGameController();
+window.onload = () => {
+  const snakeGame = new SnakeGameController();
+};
