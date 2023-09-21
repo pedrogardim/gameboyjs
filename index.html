@@ -10,12 +10,14 @@
 
 <body>
     <div id="gameboy-body">
-        <div id="gameboy-wall-top" class="gameboy-wall"></div>
+        <!-- <div id="gameboy-wall-top" class="gameboy-wall"></div>
         <div id="gameboy-wall-left" class="gameboy-wall"></div>
         <div id="gameboy-wall-right" class="gameboy-wall"></div>
-        <div id="gameboy-wall-bottom" class="gameboy-wall"></div>
+        <div id="gameboy-wall-bottom" class="gameboy-wall"></div> -->
         <div id="gameboy-screen-wrapper"></div>
-        <div id="gameboy-screen"></div>
+        <div id="gameboy-screen">
+            <canvas id="game" />
+        </div>
         <div id="gameboy-logo">
             <span>Pedro Gardim</span>
         </div>
@@ -29,10 +31,10 @@
                 <div id="gameboy-d-pad-hole"></div>
             </div>
             <div id="gameboy-buttons-wrapper">
-                <div id="gameboy-buttons-a" class="gameboy-button shadow">
+                <div id="gameboy-buttons-b" class="gameboy-button shadow">
                     <span>B</span>
                 </div>
-                <div id="gameboy-buttons-b" class="gameboy-button shadow">
+                <div id="gameboy-buttons-a" class="gameboy-button shadow">
                     <span>A</span>
                 </div>
             </div>
@@ -59,6 +61,7 @@
     </div>
     <script src="./js/main.js"></script>
     <script src="./js/events.js"></script>
+    <script src="./js/games/snake.js"></script>
 </body>
 
 </html>
