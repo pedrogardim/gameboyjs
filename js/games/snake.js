@@ -69,15 +69,19 @@ export class SnakeGameController {
   onKeyPress(event) {
     switch (event.key) {
       case "ArrowUp":
+        if (arraysEqual(this.snakeVector, [0, 1])) return;
         this.snakeVector = [0, -1];
         break;
       case "ArrowDown":
+        if (arraysEqual(this.snakeVector, [0, -1])) return;
         this.snakeVector = [0, 1];
         break;
       case "ArrowLeft":
+        if (arraysEqual(this.snakeVector, [1, 0])) return;
         this.snakeVector = [-1, 0];
         break;
       case "ArrowRight":
+        if (arraysEqual(this.snakeVector, [-1, 0])) return;
         this.snakeVector = [1, 0];
         break;
       case "Enter":
@@ -101,10 +105,7 @@ export class SnakeGameController {
     let hasCollided = false;
     const head = this.snakeTiles[this.snakeTiles.length - 1];
     this.snakeTiles.forEach((tile, index) => {
-      if (
-        index !== this.snakeTiles.length - 1 &&
-        JSON.stringify(tile) === JSON.stringify(head)
-      )
+      if (index !== this.snakeTiles.length - 1 && arraysEqual(tile, head))
         hasCollided = true;
     });
     if (
