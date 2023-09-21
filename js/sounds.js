@@ -1,5 +1,6 @@
 const playerOptions = {
-  baseUrl: "./assets/sounds/",
+  // baseUrl: "../assets/sounds/",
+  baseUrl: "https://pedrogardim.github.io/bcfs-snake-gameboy/assets/sounds/",
   urls: {
     coin: "coin.wav",
     start: "start.wav",
