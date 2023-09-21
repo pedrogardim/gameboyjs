@@ -52,7 +52,6 @@ export class SnakeGameController {
     clearInterval(this.gameInterval);
     let newSpeed =
       this.initialSpeed / (1 + 1 * ((this.points + 1) / this.speedFactor));
-    console.log(newSpeed);
     this.gameInterval = setInterval(() => this.update(), newSpeed);
   }
   update() {
