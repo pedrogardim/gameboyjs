@@ -11,7 +11,7 @@ class SnakeGameController {
       [11, 8],
     ];
     setInterval(() => this.update(), 1000 / 2);
-    document.addEventListener("keydown", this.onKeyPress);
+    document.addEventListener("keydown", this.onKeyPress.bind(this));
   }
   update() {
     let lastTile = this.snakeTiles[this.snakeTiles.length - 1];
@@ -40,20 +40,24 @@ class SnakeGameController {
         this.getTileSize()[1] - 2
       );
     });
-
-    //GRID
-    // for (let x = 0; x < this.gameSize[0]; x++) {
-    //   for (let y = 0; y < this.gameSize[1]; y++) {
-    //     this.ctx.strokeStyle = "#999";
-    //     this.ctx.lineWidth = 0.5;
-    //     this.ctx.strokeRect(
-    //       this.getTileSize()[0] * x,
-    //       this.getTileSize()[1] * y,
-    //       this.getTileSize()[0],
-    //       this.getTileSize()[1]
-    //     );
-    //   }
-    // }
+  }
+  onKeyPress(event) {
+    switch (event.key) {
+      case "ArrowUp":
+        this.snakeVector = [0, -1];
+        break;
+      case "ArrowDown":
+        this.snakeVector = [0, 1];
+        break;
+      case "ArrowLeft":
+        this.snakeVector = [-1, 0];
+        break;
+      case "ArrowRight":
+        this.snakeVector = [1, 0];
+        break;
+      default:
+        break;
+    }
   }
   // utils
   getRandomPosition() {
