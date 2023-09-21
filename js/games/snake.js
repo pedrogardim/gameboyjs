@@ -10,7 +10,7 @@ export class SnakeGameController {
   applePosition;
   speedFactor = 20; //doubles the speed  for each 20 points
   initialSpeed = 500; // cycle for each 500ms
-  snakeTileMargin = 3;
+  snakeTileMargin = 0;
   gameInterval;
   canvas;
   ctx;
@@ -75,7 +75,7 @@ export class SnakeGameController {
   }
   initCanvas() {
     this.canvas = document.getElementById("game");
-    this.canvas.width = 250;
+    this.canvas.width = 500;
     this.canvas.height = this.canvas.width * 0.8;
     this.ctx = this.canvas.getContext("2d");
     this.ctx.fillStyle = "#350";
