@@ -14,6 +14,8 @@ class SnakeGameController {
     let lastTile = this.snakeTiles[this.snakeTiles.length - 1];
     let newTile = lastTile.map((d, i) => d + this.snakeVector[i]);
     this.snakeTiles.push(newTile);
+    let a = this.snakeTiles.shift();
+    console.log(a);
     this.draw();
   }
   initCanvas() {
@@ -21,7 +23,7 @@ class SnakeGameController {
     this.ctx = this.canvas.getContext("2d");
   }
   draw() {
-    this.ctx.fillRect;
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.snakeTiles.forEach((tile) => {
       this.ctx.fillStyle = "#FF0000";
       this.ctx.fillRect(
