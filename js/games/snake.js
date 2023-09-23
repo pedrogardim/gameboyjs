@@ -21,7 +21,6 @@ export class SnakeGameController {
   init() {
     this.initCanvas();
     this.draw();
-    document.addEventListener("keydown", this.onKeyPress.bind(this));
   }
   startGame() {
     clearInterval(this.gameInterval);
@@ -117,8 +116,8 @@ export class SnakeGameController {
     this.ctx.textAlign = "left";
     this.ctx.fillText(`Score: ${this.points}`, 4, this.canvas.height / 15);
   }
-  onKeyPress(event) {
-    switch (event.key) {
+  onKeyPress(key) {
+    switch (key) {
       case "ArrowUp":
         if (arraysEqual(this.snakeVector, [0, 1])) return;
         this.snakeVector = [0, -1];

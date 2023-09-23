@@ -1,5 +1,9 @@
 import { SnakeGameController } from "./games/snake.js";
+import { initEvents } from "./events.js";
 
-window.onload = () => {
-  const snakeGame = new SnakeGameController();
+export let snakeGame;
+
+window.onload = async () => {
+  snakeGame = new SnakeGameController();
+  initEvents();
 };
