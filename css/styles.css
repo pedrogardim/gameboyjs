@@ -182,6 +182,14 @@ a {
   margin-bottom: -1vh;
 }
 
+#credits {
+  bottom: -2em;
+  right: 0;
+  position: absolute;
+  color: #b7b7ab;
+  font-size: 1.8vh;
+}
+
 /* GAMEBOY 3D */
 
 .gameboy-wall {
